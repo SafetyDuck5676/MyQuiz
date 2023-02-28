@@ -11,6 +11,7 @@ import (
 	"time"
 )
 
+// Function that checks if the name matches the parameters set. It has to be English, no spaces, no numbers.
 func CheckName(Name string) bool {
 	for _, r := range Name {
 		if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') {
@@ -19,6 +20,8 @@ func CheckName(Name string) bool {
 	}
 	return true
 }
+
+// Introductory phase that asks for your name. Loops if you type it wrong.
 func main() {
 	fmt.Println("Welcome to my test!")
 	fmt.Printf("Please type your name:")
@@ -43,8 +46,10 @@ func main() {
 		age    string
 		ageOld int
 	)
+	//Score check and a variable with the amount of questions. Throughout the questions, it will keep a count of correct answers.
 	score := 0
 	num_questions := 3
+	// Age check. If age check fails, exit program.
 	reader := bufio.NewReader(os.Stdin)
 	age, _ = reader.ReadString('\n')
 	age = strings.TrimSpace(age)
@@ -59,6 +64,7 @@ func main() {
 	fmt.Println("Write the options given as an answer")
 	time.Sleep(2 * time.Second)
 	fmt.Println("Question 1 : PC or Consoles?")
+	// Checks that the answer given can be read with no case sensitive value
 	var answer string
 	answer, _ = reader.ReadString('\n')
 	answer = strings.TrimSpace(answer)
@@ -72,6 +78,7 @@ func main() {
 	} else {
 		fmt.Println("Didn't write one of the choices at all!")
 	}
+	// Checks that the answer given can be read with no case sensitive rule and ignoring white spaces. A videogame reference.
 	fmt.Println("Question 2: Diablo 2 or Diablo 3?")
 	answer, _ = reader.ReadString('\n')
 	answer = strings.TrimSpace(answer)
@@ -85,6 +92,7 @@ func main() {
 	} else {
 		fmt.Println("Did not type the options given!")
 	}
+	// Joke question referencing a video '21'. Simply checks for the number string.
 	fmt.Println("Question 3: 9 + 10?")
 	answer, _ = reader.ReadString('\n')
 	answer = strings.TrimSpace(answer)
@@ -94,10 +102,11 @@ func main() {
 		fmt.Println("Excellent Mathematical skills.")
 		score++
 	} else if matched6 {
-		fmt.Println("You lack crucial mathematic knowledge...........")
+		fmt.Println("Silly head!")
 	} else {
 		fmt.Println("You lack crucial mathematic knowledge...........")
 	}
+	// At last, the program counts how many questions were correct, and the percentages the user got.
 	fmt.Printf("You scored %v out of %v.\n", score, num_questions)
 	percent := (float64(score) / float64(num_questions)) * 100
 	respercent := math.Round(percent)
